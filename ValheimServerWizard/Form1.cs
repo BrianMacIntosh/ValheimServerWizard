@@ -76,6 +76,13 @@ namespace ValheimServerWizard
 			}
 
 			string exePath = WizardHelpers.GetServerPath();
+
+			if (string.IsNullOrEmpty(exePath))
+			{
+				MessageBox.Show("'valheim_server.exe' could not be found. It must be installed using Steam.", "EXE Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
 			string argsFormat = "-nographics -batchmode -name \"{0}\" -port {1} -world \"{2}\" -password \"{3}\" -public {4}";
 
 			logTextBox.Text = "";

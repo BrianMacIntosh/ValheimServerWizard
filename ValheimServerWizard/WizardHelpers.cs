@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ValheimServerWizard
 {
@@ -12,23 +15,80 @@ namespace ValheimServerWizard
 		private static string s_serverPath;
 
 		/// <summary>
+		/// Returns all the Steam library folders on this computer.
+		/// </summary>
+		public static IEnumerable<string> FindSteamLibraryFolders()
+		{
+			// try to find the Steam folder
+			foreach (string drive in Directory.GetLogicalDrives())
+			{
+				string testSteamappsPath;
+				string testFoldersFile;
+
+				testSteamappsPath = Path.Combine(drive, @"Program Files\Steam\steamapps");
+				if (Directory.Exists(testSteamappsPath))
+				{
+					yield return testSteamappsPath;
+
+					testFoldersFile = Path.Combine(testSteamappsPath, "libraryfolders.vdf");
+					if (File.Exists(testFoldersFile))
+					{
+						foreach (string externalLibrary in ReadLibraryFolders(testFoldersFile))
+						{
+							yield return externalLibrary;
+						}
+					}
+				}
+
+				testSteamappsPath = Path.Combine(drive, @"Program Files (x86)\Steam\steamapps");
+				if (Directory.Exists(testSteamappsPath))
+				{
+					yield return testSteamappsPath;
+
+					testFoldersFile = Path.Combine(testSteamappsPath, "libraryfolders.vdf");
+					if (File.Exists(testFoldersFile))
+					{
+						foreach (string externalLibrary in ReadLibraryFolders(testFoldersFile))
+						{
+							yield return externalLibrary;
+						}
+					}
+				}
+			}
+		}
+
+		/// <summary>
+		/// Returns all the external Steam library folders identified in the specified file.
+		/// </summary>
+		public static IEnumerable<string> ReadLibraryFolders(string sourceFile)
+		{
+			Regex lineRegex = new Regex("^\\s*\"[0-9]+\"\\s*\"(.+)\"$");
+
+			using (StreamReader reader = new StreamReader(new FileStream(sourceFile, FileMode.Open, FileAccess.Read), Encoding.UTF8))
+			{
+				while (!reader.EndOfStream)
+				{
+					string line = reader.ReadLine().Trim();
+					Match match = lineRegex.Match(line);
+					if (match.Success)
+					{
+						//HACK: it's not really a regex
+						yield return Path.Combine(Regex.Unescape(match.Groups[1].Value), "steamapps");
+					}
+				}
+			}
+		}
+
+		/// <summary>
 		/// Returns the full path to the server EXE.
 		/// </summary>
 		public static string GetServerPath()
 		{
 			if (string.IsNullOrEmpty(s_serverPath))
 			{
-				// try to find the EXE
-				foreach (string drive in Directory.GetLogicalDrives())
+				foreach (string library in FindSteamLibraryFolders())
 				{
-					string testPath = Path.Combine(drive, @"SteamLibrary\steamapps\common\Valheim dedicated server\valheim_server.exe");
-					if (File.Exists(testPath))
-					{
-						s_serverPath = testPath;
-						break;
-					}
-
-					testPath = Path.Combine(drive, @"Program Files (x86)\Steam\steamapps\common\valheim_server.exe");
+					string testPath = Path.Combine(library, @"common\Valheim dedicated server\valheim_server.exe");
 					if (File.Exists(testPath))
 					{
 						s_serverPath = testPath;
