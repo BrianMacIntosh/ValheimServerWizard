@@ -330,7 +330,6 @@ namespace ValheimServerWizard
 			if (!IsRestartTaskRunning)
 			{
 				m_restartTask = ServerRestart();
-				m_restartTask.Start();
 
 				RefreshStateButtons();
 			}
