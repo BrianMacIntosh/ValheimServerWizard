@@ -79,7 +79,7 @@ namespace ValheimServerWizard
 
 			if (string.IsNullOrEmpty(exePath))
 			{
-				MessageBox.Show("'valheim_server.exe' could not be found. It must be installed using Steam.", "EXE Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("'valheim_server.exe' could not be found. It must be installed using Steam.", "Hosting Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -120,25 +120,25 @@ namespace ValheimServerWizard
 		{
 			if (worldsListBox.SelectedItem == null)
 			{
-				//TODO: error
+				MessageBox.Show("No world is selected.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 
 			if (serverNameTextBox.Text.Length <= 0)
 			{
-				//TODO: error
+				MessageBox.Show("Server name cannot be empty.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 
 			if (serverNameTextBox.Text == passwordBox.Text)
 			{
-				//TODO: error
+				MessageBox.Show("Password cannot be the same as the server name.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 			
 			if (passwordBox.Text.Length < 5)
 			{
-				//TODO: error
+				MessageBox.Show("Password must be at least 5 characters.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 
