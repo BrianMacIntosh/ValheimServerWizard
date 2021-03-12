@@ -225,14 +225,16 @@ namespace ValheimServerWizard
 
 		private void HandleServerExit(object sender, EventArgs e)
 		{
-			if (onlineLabel.InvokeRequired)
+			if (InvokeRequired)
 			{
-				onlineLabel.Invoke(new EventHandler(HandleServerExit), sender, e);
+				Invoke(new EventHandler(HandleServerExit), sender, e);
 			}
 			else
 			{
 				onlineLabel.Text = "STOPPED";
 				onlineLabel.ForeColor = Color.Red;
+
+				playersListBox.Items.Clear();
 
 				RefreshStateButtons();
 			}
