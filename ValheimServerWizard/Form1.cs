@@ -218,9 +218,8 @@ namespace ValheimServerWizard
 			ServerSendExit();
 			await Task.Run(() => m_serverProcess.WaitForExit());
 			ServerStart();
-
-			//TODO: fixme
-			RefreshStateButtons();
+			
+			RefreshStateButtons(false);
 		}
 
 		private void HandleServerExit(object sender, EventArgs e)
@@ -252,9 +251,14 @@ namespace ValheimServerWizard
 
 		private void RefreshStateButtons()
 		{
-			startServerButton.Enabled = !IsServerProcessRunning && !IsRestartTaskRunning;
-			stopButton.Enabled = IsServerProcessRunning && !IsRestartTaskRunning;
-			restartButton.Enabled = IsServerProcessRunning && !IsRestartTaskRunning;
+			RefreshStateButtons(IsRestartTaskRunning);
+		}
+
+		private void RefreshStateButtons(bool restartTaskRunning)
+		{
+			startServerButton.Enabled = !IsServerProcessRunning && !restartTaskRunning;
+			stopButton.Enabled = IsServerProcessRunning && !restartTaskRunning;
+			restartButton.Enabled = IsServerProcessRunning && !restartTaskRunning;
 		}
 
 		private string ConfigFileDirectory => Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ValheimServerWizard");
