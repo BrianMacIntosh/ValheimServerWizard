@@ -33,6 +33,9 @@
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.controlsGroupBox = new System.Windows.Forms.GroupBox();
+			this.showPasswordCheckBox = new System.Windows.Forms.CheckBox();
+			this.maxPortNumeric = new System.Windows.Forms.NumericUpDown();
+			this.portHyphenLabel = new System.Windows.Forms.Label();
 			this.publicLabel = new System.Windows.Forms.Label();
 			this.restartButton = new System.Windows.Forms.Button();
 			this.publicCheckBox = new System.Windows.Forms.CheckBox();
@@ -52,15 +55,12 @@
 			this.playersListBox = new System.Windows.Forms.ListBox();
 			this.onlineLabel = new System.Windows.Forms.Label();
 			this.logTextBox = new System.Windows.Forms.TextBox();
-			this.portHyphenLabel = new System.Windows.Forms.Label();
-			this.maxPortNumeric = new System.Windows.Forms.NumericUpDown();
-			this.showPasswordCheckBox = new System.Windows.Forms.CheckBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
 			this.menuStrip1.SuspendLayout();
 			this.controlsGroupBox.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.maxPortNumeric)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.portNumeric)).BeginInit();
 			this.playersGroupBox.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.maxPortNumeric)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -112,6 +112,46 @@
 			this.controlsGroupBox.TabIndex = 1;
 			this.controlsGroupBox.TabStop = false;
 			this.controlsGroupBox.Text = "Server";
+			// 
+			// showPasswordCheckBox
+			// 
+			this.showPasswordCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
+			this.showPasswordCheckBox.AutoSize = true;
+			this.showPasswordCheckBox.Image = global::ValheimServerWizard.Properties.Resources.PasswordBarElement_10720;
+			this.showPasswordCheckBox.Location = new System.Drawing.Point(255, 162);
+			this.showPasswordCheckBox.Name = "showPasswordCheckBox";
+			this.showPasswordCheckBox.Size = new System.Drawing.Size(22, 22);
+			this.showPasswordCheckBox.TabIndex = 15;
+			this.toolTip1.SetToolTip(this.showPasswordCheckBox, "Show Password");
+			this.showPasswordCheckBox.UseVisualStyleBackColor = true;
+			this.showPasswordCheckBox.CheckedChanged += new System.EventHandler(this.showPasswordCheckBox_CheckedChanged);
+			// 
+			// maxPortNumeric
+			// 
+			this.maxPortNumeric.Enabled = false;
+			this.maxPortNumeric.Location = new System.Drawing.Point(194, 135);
+			this.maxPortNumeric.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+			this.maxPortNumeric.Name = "maxPortNumeric";
+			this.maxPortNumeric.Size = new System.Drawing.Size(83, 20);
+			this.maxPortNumeric.TabIndex = 14;
+			this.maxPortNumeric.Value = new decimal(new int[] {
+            2457,
+            0,
+            0,
+            0});
+			// 
+			// portHyphenLabel
+			// 
+			this.portHyphenLabel.AutoSize = true;
+			this.portHyphenLabel.Location = new System.Drawing.Point(176, 138);
+			this.portHyphenLabel.Name = "portHyphenLabel";
+			this.portHyphenLabel.Size = new System.Drawing.Size(12, 13);
+			this.portHyphenLabel.TabIndex = 13;
+			this.portHyphenLabel.Text = "–";
 			// 
 			// publicLabel
 			// 
@@ -325,46 +365,6 @@
 			this.logTextBox.Size = new System.Drawing.Size(573, 105);
 			this.logTextBox.TabIndex = 3;
 			// 
-			// portHyphenLabel
-			// 
-			this.portHyphenLabel.AutoSize = true;
-			this.portHyphenLabel.Location = new System.Drawing.Point(176, 138);
-			this.portHyphenLabel.Name = "portHyphenLabel";
-			this.portHyphenLabel.Size = new System.Drawing.Size(12, 13);
-			this.portHyphenLabel.TabIndex = 13;
-			this.portHyphenLabel.Text = "–";
-			// 
-			// maxPortNumeric
-			// 
-			this.maxPortNumeric.Enabled = false;
-			this.maxPortNumeric.Location = new System.Drawing.Point(194, 135);
-			this.maxPortNumeric.Maximum = new decimal(new int[] {
-            65535,
-            0,
-            0,
-            0});
-			this.maxPortNumeric.Name = "maxPortNumeric";
-			this.maxPortNumeric.Size = new System.Drawing.Size(83, 20);
-			this.maxPortNumeric.TabIndex = 14;
-			this.maxPortNumeric.Value = new decimal(new int[] {
-            2457,
-            0,
-            0,
-            0});
-			// 
-			// showPasswordCheckBox
-			// 
-			this.showPasswordCheckBox.Appearance = System.Windows.Forms.Appearance.Button;
-			this.showPasswordCheckBox.AutoSize = true;
-			this.showPasswordCheckBox.Image = global::ValheimServerWizard.Properties.Resources.PasswordBarElement_10720;
-			this.showPasswordCheckBox.Location = new System.Drawing.Point(255, 162);
-			this.showPasswordCheckBox.Name = "showPasswordCheckBox";
-			this.showPasswordCheckBox.Size = new System.Drawing.Size(22, 22);
-			this.showPasswordCheckBox.TabIndex = 15;
-			this.toolTip1.SetToolTip(this.showPasswordCheckBox, "Show Password");
-			this.showPasswordCheckBox.UseVisualStyleBackColor = true;
-			this.showPasswordCheckBox.CheckedChanged += new System.EventHandler(this.showPasswordCheckBox_CheckedChanged);
-			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,6 +375,7 @@
 			this.Controls.Add(this.playersGroupBox);
 			this.Controls.Add(this.controlsGroupBox);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "Form1";
@@ -384,10 +385,10 @@
 			this.menuStrip1.PerformLayout();
 			this.controlsGroupBox.ResumeLayout(false);
 			this.controlsGroupBox.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.maxPortNumeric)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.portNumeric)).EndInit();
 			this.playersGroupBox.ResumeLayout(false);
 			this.playersGroupBox.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.maxPortNumeric)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
