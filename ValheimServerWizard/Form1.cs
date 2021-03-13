@@ -163,6 +163,11 @@ namespace ValheimServerWizard
 					onlineLabel.Text = "ONLINE";
 					onlineLabel.ForeColor = Color.Green;
 				}
+				else if (e.Data.EndsWith("Game server disconnected"))
+				{
+					onlineLabel.Text = "OFFLINE";
+					onlineLabel.ForeColor = Color.Orange;
+				}
 
 				int handshakeIndex = e.Data.IndexOf("Got handshake from client ");
 				if (handshakeIndex >= 0)
