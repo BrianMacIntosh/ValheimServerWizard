@@ -56,6 +56,10 @@
 			this.onlineLabel = new System.Windows.Forms.Label();
 			this.logTextBox = new System.Windows.Forms.TextBox();
 			this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+			this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.adminListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.bannedListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.permittedListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.controlsGroupBox.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.maxPortNumeric)).BeginInit();
@@ -66,7 +70,8 @@
 			// menuStrip1
 			// 
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(601, 24);
@@ -365,6 +370,37 @@
 			this.logTextBox.Size = new System.Drawing.Size(573, 105);
 			this.logTextBox.TabIndex = 3;
 			// 
+			// editToolStripMenuItem
+			// 
+			this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.adminListToolStripMenuItem,
+            this.bannedListToolStripMenuItem,
+            this.permittedListToolStripMenuItem});
+			this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+			this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+			this.editToolStripMenuItem.Text = "Edit";
+			// 
+			// adminListToolStripMenuItem
+			// 
+			this.adminListToolStripMenuItem.Name = "adminListToolStripMenuItem";
+			this.adminListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.adminListToolStripMenuItem.Text = "Admin List";
+			this.adminListToolStripMenuItem.Click += new System.EventHandler(this.adminListToolStripMenuItem_Click);
+			// 
+			// bannedListToolStripMenuItem
+			// 
+			this.bannedListToolStripMenuItem.Name = "bannedListToolStripMenuItem";
+			this.bannedListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.bannedListToolStripMenuItem.Text = "Banned List";
+			this.bannedListToolStripMenuItem.Click += new System.EventHandler(this.bannedListToolStripMenuItem_Click);
+			// 
+			// permittedListToolStripMenuItem
+			// 
+			this.permittedListToolStripMenuItem.Name = "permittedListToolStripMenuItem";
+			this.permittedListToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.permittedListToolStripMenuItem.Text = "Permitted List";
+			this.permittedListToolStripMenuItem.Click += new System.EventHandler(this.permittedListToolStripMenuItem_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -423,6 +459,10 @@
 		private System.Windows.Forms.Label portHyphenLabel;
 		private System.Windows.Forms.CheckBox showPasswordCheckBox;
 		private System.Windows.Forms.ToolTip toolTip1;
+		private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem adminListToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem bannedListToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem permittedListToolStripMenuItem;
 	}
 }
 

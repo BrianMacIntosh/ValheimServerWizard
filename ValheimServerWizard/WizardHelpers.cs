@@ -104,8 +104,16 @@ namespace ValheimServerWizard
 		/// </summary>
 		public static string GetWorldsDirectory()
 		{
+			return Path.Combine(GetValheimAppDataDirectory(), "worlds");
+		}
+
+		/// <summary>
+		/// Returns the full path to the Valheim app data directory.
+		/// </summary>
+		public static string GetValheimAppDataDirectory()
+		{
 			Guid localLowId = new Guid("A520A1A4-1780-4FF6-BD18-167343C5AF16");
-			return Path.Combine(GetKnownFolderPath(localLowId), "IronGate", "Valheim", "worlds");
+			return Path.Combine(GetKnownFolderPath(localLowId), "IronGate", "Valheim");
 		}
 
 		//https://stackoverflow.com/questions/4494290/detect-the-location-of-appdata-locallow

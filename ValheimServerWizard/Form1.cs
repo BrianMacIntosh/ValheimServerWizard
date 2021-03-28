@@ -407,5 +407,23 @@ namespace ValheimServerWizard
 				//m_serverProcess.WaitForExit();
 			}
 		}
+
+		private void adminListToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			string path = Path.Combine(WizardHelpers.GetValheimAppDataDirectory(), "adminlist.txt");
+			Process.Start(path);
+		}
+
+		private void bannedListToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			string path = Path.Combine(WizardHelpers.GetValheimAppDataDirectory(), "bannedlist.txt");
+			Process.Start(path);
+		}
+
+		private void permittedListToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			string path = Path.Combine(WizardHelpers.GetValheimAppDataDirectory(), "permittedlist.txt");
+			Process.Start(path);
+		}
 	}
 }
