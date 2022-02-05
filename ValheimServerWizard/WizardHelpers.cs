@@ -62,7 +62,7 @@ namespace ValheimServerWizard
 		/// </summary>
 		public static IEnumerable<string> ReadLibraryFolders(string sourceFile)
 		{
-			Regex lineRegex = new Regex("^\\s*\"[0-9]+\"\\s*\"(.+)\"$");
+			Regex lineRegex = new Regex("^\\s*\"path\"\\s*\"(.+)\"$");
 
 			using (StreamReader reader = new StreamReader(new FileStream(sourceFile, FileMode.Open, FileAccess.Read), Encoding.UTF8))
 			{
