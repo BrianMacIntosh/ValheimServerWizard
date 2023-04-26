@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -31,6 +32,12 @@ namespace ValheimServerWizard
 			m_worldsWatcher.Deleted += HandleWorldDeleted;
 
 			LoadConfiguration();
+
+			string[] cmdArgs = Environment.GetCommandLineArgs();
+			if (cmdArgs.Contains("-autostart", StringComparer.InvariantCultureIgnoreCase))
+			{
+				ServerStart();
+			}
 		}
 
 		private void HandleWorldCreated(object sender, FileSystemEventArgs e)
